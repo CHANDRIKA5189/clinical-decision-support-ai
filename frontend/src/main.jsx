@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import { createRoot } from "react-dom/client";
 import "./styles.css";
 
-const API = import.meta.env.VITE_API_URL || "";
-
+const API = "https://clinical-decision-support-ai-tv2p.onrender.com";
 function App() {
   const [text, setText] = useState("");
   const [result, setResult] = useState(null);
