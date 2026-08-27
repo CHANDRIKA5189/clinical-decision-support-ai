@@ -1,13 +1,18 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel
 from typing import List
 
+
 class AnalyzeRequest(BaseModel):
-    symptoms_text: str = Field(min_length=2, max_length=5000)
+    symptoms_text: str
     include_llm: bool = True
+
 
 class Prediction(BaseModel):
     disease: str
     confidence: float
+    matched_symptoms: List[str] = []
+    specialist: str = "General physician"
+
 
 class AnalysisResponse(BaseModel):
     extracted_symptoms: List[str]
@@ -16,6 +21,3 @@ class AnalysisResponse(BaseModel):
     red_flags: List[str]
     advice: str
     disclaimer: str
-
-class ReportRequest(AnalyzeRequest):
-    pass
